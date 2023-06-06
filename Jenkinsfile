@@ -1,5 +1,12 @@
 node {
 
+   stage('Build') {
+            agent {
+                docker {
+                    image '3.11.3-alpine3.17'
+                }
+            }
+
   stage("Checkout repo"){
      git branch: 'main',
      url: "https://github.com/OlenaSalo/api_python_automation.git"
