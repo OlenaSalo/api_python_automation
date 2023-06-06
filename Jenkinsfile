@@ -3,8 +3,11 @@ pipeline {
        stages{
 
          stage("Checkout repo"){
+         steps{
              git branch: 'main',
              url: "https://github.com/OlenaSalo/api_python_automation.git"
+         }
+
           }
           stage('Build') {
                 agent {
