@@ -5,7 +5,7 @@ pipeline {
           stage('Build') {
                 agent {
                     docker {
-                        image '3.11.3-alpine3.17'
+                        image '3.10'
                     }
                 }
 
