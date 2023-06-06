@@ -2,13 +2,6 @@ pipeline {
        agent none
        stages{
 
-         stage("Checkout repo"){
-         steps{
-             git branch: 'main',
-             url: "https://github.com/OlenaSalo/api_python_automation.git"
-         }
-
-          }
           stage('Build') {
                 agent {
                     docker {
@@ -17,6 +10,8 @@ pipeline {
                 }
 
             steps{
+                git branch: 'main',
+                url: "https://github.com/OlenaSalo/api_python_automation.git"
                 sh """
                  pipenv install
                  pipenv run pytest tests -sv --alluredir=allure_results
