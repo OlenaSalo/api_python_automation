@@ -1,4 +1,5 @@
-node {
+pipeline {
+         agent none
          stage("Checkout repo"){
              git branch: 'main',
              url: "https://github.com/OlenaSalo/api_python_automation.git"
@@ -11,8 +12,19 @@ node {
                 }
 
             steps{
-                sh 'pipenv install'
-                sh 'pipenv run pytest tests -sv --alluredir=allure_results'
+                sh """
+                 pipenv install
+                 pipenv run pytest tests -sv --alluredir=allure_results
+                """
+                allure([
+                        includeProperties: false,
+                        jdk: '',
+                        properties: [],
+                        reportBuildPolicy: 'ALWAYS',
+                        results: [[path: 'allure_results']]
+                    ])
+//                 sh 'pipenv install'
+//                 sh 'pipenv run pytest tests -sv --alluredir=allure_results'
               }
             }
 
@@ -25,16 +37,4 @@ node {
 //           stage('Test'){
 //             sh 'pipenv run pytest tests -sv --alluredir=allure_results'
 //           }
-
-          stage("Report"){
-                  script {
-                      allure(
-                      includeProperties: false,
-                      jdk: '',
-                      properties: [],
-                      reportBuildPolice: 'ALWAYS',
-                      result: [[path: 'allure_results']]
-                      )
-                  }
-          }
    }
