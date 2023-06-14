@@ -16,7 +16,6 @@ class ApiService(object):
         self._headers = {"content-type": "application/json"}
 
     def post(self, url,  body):
-        # self._headers = {}
         return requests.post("{}{}".format(self._base_url, url), data=json.dumps(body),
                       headers = self._headers)
 
@@ -31,6 +30,4 @@ class UserApiService(ApiService):
 
     @allure.step
     def create_user(self, user):
-
-
         return AssertableResponse(self.post("/register", user))

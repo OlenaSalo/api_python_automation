@@ -1,5 +1,5 @@
 import abc
-import jsonpath_rw
+
 from hamcrest import assert_that
 from jsonpath_rw import parse
 

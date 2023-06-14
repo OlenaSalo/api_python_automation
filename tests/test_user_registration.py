@@ -1,6 +1,4 @@
-import faker
-import requests
-import json
+
 
 from src.condition import status_code, body
 from src.services import UserApiService

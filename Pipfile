@@ -7,7 +7,9 @@ name = "pypi"
 pytest = "*"
 requests = "*"
 faker = "*"
-
+jsonpath-rw = "*"
+install = "*"
+pyhamcrest = "*"
 
 [dev-packages]
 
